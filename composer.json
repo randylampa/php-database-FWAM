@@ -1,6 +1,6 @@
 {
-	"name" : "technicalguru/database",
-	"description" : "A PHP library to access databases",
+	"name" : "technicalguru/database-fwam",
+	"description" : "A PHP library to access databases (FWAM)",
 	"type" : "library",
 	"keywords" : [
 		"database",
@@ -16,7 +16,7 @@
 	],
 	"require" : {
 		"php" : ">=7.0.0",
-		"technicalguru/utils" : "~1"
+		"technicalguru/utils-fwam" : "@dev"
 	},
 	"autoload" : {
 		"psr-4" : {
