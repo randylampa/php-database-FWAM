@@ -47,7 +47,7 @@ class QueryImpl implements Query {
 	  * Resets the result class.
 	  * Useful when using #setColumns() as this method erases the result class.
 	  */
-	public function setResultClass(?string $name) {
+	public function setResultClass(/*?*/string $name) {
 		$this->resultClassName = $name;
 		return $this;
 	}
