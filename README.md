@@ -42,7 +42,7 @@ $config = array(
     'user'        => 'user',
     'pass'        => 'password',
 );
-$db = \TgDatabase\Database($config);
+$db = new \TgDatabase\Database($config);
 ```
 
 Please notice that we provide a table prefix. It is a common practice to prefix all your
@@ -54,7 +54,7 @@ Instead of holding the credentials with the configuration, you could use a `TgUt
 that holds these data. `Database`will ignore credentials in the config array then.
 
 ```
-$db = \TgDatabase\Database($config, $credentialsProvider);
+$db = new \TgDatabase\Database($config, $credentialsProvider);
 ```
 
 ## Querying objects
@@ -141,7 +141,7 @@ is provided by the `DAO` object. It simplifies the usage with databases a lot mo
 Create a DAO by giving it the `Database` instance and the table name:
 
 ```
-$dao = \TgDatabase\DAO($db, '#__users');
+$dao = new \TgDatabase\DAO($db, '#__users');
 ```
 
 The default constructor as above makes assumptions about your table:
@@ -153,10 +153,10 @@ However, you can tell `DAO` your specifics:
 
 ```
 // Uses a specific class for the data
-$dao = \TgDatabase\DAO($db, '#__users', 'MyNamespace\\User`);
+$dao = new \TgDatabase\DAO($db, '#__users', 'MyNamespace\\User`);
 
 // Uses a specific class and another primary key attribute
-$dao = \TgDatabase\DAO($db, '#__users', 'MyNamespace\\User`, 'id');
+$dao = new \TgDatabase\DAO($db, '#__users', 'MyNamespace\\User`, 'id');
 ```
 
 `DAO` can actually handle non-numeric primary keys. The usage is not recommended though as you need
