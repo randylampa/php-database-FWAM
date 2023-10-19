@@ -233,6 +233,9 @@ class DAO {
 				if ($query->save($fields) !== FALSE) {
 					return $query->first();
 				};
+                if ($query->hasError()) {
+					\TgLog\Log::error($query->error());
+				}
 			}
 		}
 		return FALSE;
