@@ -166,6 +166,18 @@ class DAO {
 		return $this->createQuery(NULL, $restrictions, $order, $startIndex, $maxObjects)->list();
 	}
 
+    /**
+	 * Find objects with given restrictions and in given order.
+	 * @param array $restrictions - the criterions to search for (AND) - see README.md (optional, default is empty array)
+	 * @param array $order        - list of order columns - see README.md (optional, default is empty array)
+	 * @param int $startIndex     - index of first object in order to return (optional, default is 0)
+	 * @param int $maxObjects     - number of objects to return at max (optional, default is 0 = all objects)
+	 * @return array list of objects found matching the restrictions (objects contains only $this->idColumn)
+     */
+	public function findUids($restrictions = array(), $order = array(), $startIndex = 0, $maxObjects = 0) {
+		return $this->createQuery(NULL, $restrictions, $order, $startIndex, $maxObjects)->setSelect(new Criterion\PropertySelect($this->idColumn))->setResultClass(NULL)->list();
+	}
+
 	/** Count objects with given restrictions.
 	 * @param array $restrictions - the criterions to search for (AND) - see README.md (optional, default is empty array)
 	 * @return int the number of objects matching the restrictions.
