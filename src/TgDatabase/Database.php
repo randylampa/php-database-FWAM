@@ -121,13 +121,15 @@ class Database {
 	}
 
 	/**
-	 * Checks existance of a table.
+	 * Checks existence of a table.
 	 * @param string $tableName - name of table to be checked
 	 * @return string TRUE when table exists, FALSE otherwise.
 	 */
 	public function tableExists($tableName) {
-		$res = $this->query('SELECT * FROM '.$tableName);
-		$rc  = $res !== FALSE;
+        // THIS IS VERY FUCKED WAY OF TESTING TABLE EXISTENCE, CAUSING MASSIVE MEMORY USAGE!!!
+        $res = $this->query('SELECT * FROM '.$tableName.' LIMIT 1'); // limit may not be present in other SQL dialects
+		//$res = $this->query('DESCRIBE '.$tableName);
+        $rc  = $res !== FALSE;
 		if ($res) $res->free();
 		return $rc;
 	}
